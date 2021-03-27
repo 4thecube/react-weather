@@ -1,0 +1,39 @@
+.measure {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 10vw;
+  height: 50vh;
+}
+
+.date-container {
+  width: calc(100% + 2rem);
+  height: 7vh;
+  font-size: 2rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.date {
+  z-index: 22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 25%;
+  color: white;
+  background-color: #2e3439;
+}
+.measure-data,
+.measure-image {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.measure-image {
+  height: 100px;
+}

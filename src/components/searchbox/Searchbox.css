@@ -1,0 +1,16 @@
+.searchbox{
+    width: 40%;
+    height: 10vh;
+    background-color: #2e3439;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    font-size: 1.5rem;
+    height: 50%;
+    width: 70%;
+
+    outline: none;
+}
