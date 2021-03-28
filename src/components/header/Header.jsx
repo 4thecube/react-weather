@@ -4,11 +4,10 @@ import moment from "moment";
 
 import "./Header.css";
 
-const Header = ({ getDate }) => {
-  console.log(moment().locale());
-  const today = moment().isoWeekday(moment()._d.getDay()).format("dddd");
+const Header = ({ dates }) => {
+  const today = moment().isoWeekday(moment().date()).format("dddd");
   const tomorrow = moment()
-    .isoWeekday(moment().add(1, "days")._d.getDay())
+    .isoWeekday(moment().add(1, "days").date())
     .format("dddd");
   const theDayAfterTomorrow = moment()
     .isoWeekday(moment().add(2, "days")._d.getDay())
@@ -19,6 +18,7 @@ const Header = ({ getDate }) => {
   const ThreeDaysAfterTomorrow = moment()
     .isoWeekday(moment().add(4, "days")._d.getDay())
     .format("dddd");
+
   return (
     <div className="header">
       <NavLink
@@ -30,28 +30,28 @@ const Header = ({ getDate }) => {
         {today}
       </NavLink>
       <NavLink
-        to={`/${getDate + 1}`}
+        to={`/${moment(dates.tomorrow).date()}`}
         className="header__option"
         activeClassName="selected"
       >
         {tomorrow}
       </NavLink>
       <NavLink
-        to={`/${getDate + 2}`}
+        to={`/${moment(dates.theDayAfterTomorrow).date()}`}
         className="header__option"
         activeClassName="selected"
       >
         {theDayAfterTomorrow}
       </NavLink>
       <NavLink
-        to={`/${getDate + 3}`}
+        to={`/${moment(dates.twoDaysAfterTomorrow).date()}`}
         className="header__option"
         activeClassName="selected"
       >
         {TwoDaysAfterTomorrow}
       </NavLink>
       <NavLink
-        to={`/${getDate + 4}`}
+        to={`/${moment(dates.threeDaysAfterTomorrow).date()}`}
         className="header__option"
         activeClassName="selected"
       >

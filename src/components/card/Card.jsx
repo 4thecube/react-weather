@@ -1,5 +1,8 @@
 import React from "react";
 import Field from "../field/Field";
+
+import moment from "moment";
+
 import "./Card.css";
 
 const Card = ({ weather, currentDate }) => {
@@ -10,7 +13,10 @@ const Card = ({ weather, currentDate }) => {
   //   new Date()
   //     .toLocaleString("default", { month: "long" })
   //     .replace(/ень/i, endOfMonth);
-  const date = currentDate + " " + new Date().toLocaleString("en", { month: "long" });
+  const day = moment(currentDate).date();
+  const month = moment(currentDate).month("MM").format("MMMM");
+  const date = day + " " + month;
+
   return (
     <div className="today-container">
       <div className="date-container">
@@ -27,9 +33,9 @@ const Card = ({ weather, currentDate }) => {
           <span className="measure-data">Вітер, м/с</span>
         </div>
         {weather.list.map((weather) =>
-          parseInt(currentDate) ===
+          parseInt(day) ===
           parseInt(weather.dt_txt.split(" ")[0].split("-")[2]) ? (
-            <Field weather={weather} title="Today" />
+            <Field key={weather.dt} weather={weather} />
           ) : null
         )}
       </div>

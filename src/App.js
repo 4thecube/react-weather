@@ -3,9 +3,10 @@ import { Route, Switch } from "react-router-dom";
 import Searchbox from "./components/searchbox/Searchbox";
 import Header from "./components/header/Header";
 import Card from "./components/card/Card";
+import Loader from "./components/loader/Loader";
+import moment from "moment";
 
 import "./App.css";
-import Loader from "./components/loader/Loader";
 
 function App() {
   const [data, setData] = useState({
@@ -22,7 +23,7 @@ function App() {
     e.preventDefault();
     setSearch(inputRef.current.value);
     e.target.reset();
-    setIsLoading(true)
+    setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
@@ -38,7 +39,16 @@ function App() {
     res();
   }, [search]);
 
-  console.log(isLoading);
+  const dates = {
+    today: moment(),
+    tomorrow: moment().add(1, "days"),
+    theDayAfterTomorrow: moment().add(2, "days"),
+    twoDaysAfterTomorrow: moment().add(3, "days"),
+    threeDaysAfterTomorrow: moment().add(4, "days"),
+  };
+
+  console.log(moment(dates.tomorrow).date());
+
   return (
     <div className="app">
       {data.cod ? (
@@ -58,32 +68,52 @@ function App() {
                 />
               </form>
             </div>
-            <Header getDate={getDate} />
+            <Header dates={dates} />
             <Switch>
               <Route
                 path={`/`}
                 exact
-                render={() => <Card weather={data} currentDate={getDate} />}
+                render={() => <Card weather={data} currentDate={dates.today} />}
               />
               <Route
-                path={`/${getDate + 1}`}
+                path={`/${moment(dates.tomorrow).date()}`}
                 exact
-                render={() => <Card weather={data} currentDate={getDate + 1} />}
+                render={() => (
+                  <Card
+                    weather={data} 
+                    currentDate={dates.tomorrow}
+                  />
+                )}
               />
               <Route
-                path={`/${getDate + 2}`}
+                path={`/${moment(dates.theDayAfterTomorrow).date()}`}
                 exact
-                render={() => <Card weather={data} currentDate={getDate + 2} />}
+                render={() => (
+                  <Card
+                    weather={data}
+                    currentDate={dates.theDayAfterTomorrow}
+                  />
+                )}
               />
               <Route
-                path={`/${getDate + 3}`}
+                path={`/${moment(dates.twoDaysAfterTomorrow).date()}`}
                 exact
-                render={() => <Card weather={data} currentDate={getDate + 3} />}
+                render={() => (
+                  <Card
+                    weather={data}
+                    currentDate={dates.twoDaysAfterTomorrow}
+                  />
+                )}
               />
               <Route
-                path={`/${getDate + 4}`}
+                path={`/${moment(dates.threeDaysAfterTomorrow).date()}`}
                 exact
-                render={() => <Card weather={data} currentDate={getDate + 4} />}
+                render={() => (
+                  <Card
+                    weather={data}
+                    currentDate={dates.threeDaysAfterTomorrow}
+                  />
+                )}
               />
             </Switch>
           </div>
