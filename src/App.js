@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Route, Switch } from "react-router-dom";
-import Searchbox from "./components/searchbox/Searchbox";
+import moment from "moment";
+
 import Header from "./components/header/Header";
 import Card from "./components/card/Card";
 import Loader from "./components/loader/Loader";
-import moment from "moment";
 
 import "./App.css";
 
@@ -14,8 +14,6 @@ function App() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef();
-  const newDate = new Date(Date.now());
-  const getDate = newDate.getDate();
 
   const [search, setSearch] = useState("Ivano-Frankivsk");
 
@@ -63,7 +61,7 @@ function App() {
               <form onSubmit={handleSearchChange} className="searchbox">
                 <input
                   type="text"
-                  placeholder="City or village"
+                  placeholder="Search city"
                   ref={inputRef}
                 />
               </form>
