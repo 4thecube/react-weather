@@ -8,7 +8,10 @@ const Field = ({ weather }) => {
       <span className="classic-data time">
         {weather.dt_txt.split(" ")[1].split(":")[0]}
       </span>
-      <div className="image-data">
+      <div
+        weather-description={`${weather.weather[0].description}`}
+        className="image-data"
+      >
         <img
           className={weather.sys.pod === "d" ? "day" : "night"}
           src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
@@ -30,7 +33,7 @@ const Field = ({ weather }) => {
       </span>
       <span
         className={`${
-          weather.main.humidity > 65 ||  weather.main.humidity < 40
+          weather.main.humidity > 65 || weather.main.humidity < 40
             ? "hot"
             : null
         } classic-data`}
