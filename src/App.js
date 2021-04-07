@@ -45,7 +45,7 @@ function App() {
     threeDaysAfterTomorrow: moment().add(4, "days"),
   };
 
-  console.log(moment(dates.tomorrow).date());
+  // console.log(moment(dates.tomorrow).date());
 
   return (
     <div className="app">

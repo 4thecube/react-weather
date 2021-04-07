@@ -5,19 +5,12 @@ import moment from "moment";
 import "./Header.css";
 
 const Header = ({ dates }) => {
-  const today = moment().isoWeekday(moment().date()).format("dddd");
-  const tomorrow = moment()
-    .isoWeekday(moment().add(1, "days").date())
-    .format("dddd");
-  const theDayAfterTomorrow = moment()
-    .isoWeekday(moment().add(2, "days")._d.getDay())
-    .format("dddd");
-  const TwoDaysAfterTomorrow = moment()
-    .isoWeekday(moment().add(3, "days")._d.getDay())
-    .format("dddd");
-  const ThreeDaysAfterTomorrow = moment()
-    .isoWeekday(moment().add(4, "days")._d.getDay())
-    .format("dddd");
+  moment().format("dddd");
+  const today = moment().format("dddd");
+  const tomorrow = moment().add(1, "days").format("dddd");
+  const theDayAfterTomorrow = moment().add(2, "days").format("dddd");
+  const TwoDaysAfterTomorrow = moment().add(3, "days").format("dddd");
+  const ThreeDaysAfterTomorrow = moment().add(4, "days").format("dddd");
 
   return (
     <div className="header">
