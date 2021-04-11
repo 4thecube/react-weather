@@ -7,6 +7,7 @@
   min-width: 10vw;
   height: 50vh;
   font-size: 1.3rem;
+  color: white;
 }
 
 .classic-data {
@@ -23,7 +24,7 @@
 }
 
 .cold {
-  color: blue;
+  color: #58a6ff;
 }
 
 .classic-data,

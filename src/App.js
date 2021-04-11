@@ -17,7 +17,7 @@ function App() {
 
   const [search, setSearch] = useState("Ivano-Frankivsk");
 
-  const handleSearchChange = (e) => {
+  const onSearchSubmit = (e) => {
     e.preventDefault();
     setSearch(inputRef.current.value);
     e.target.reset();
@@ -25,6 +25,10 @@ function App() {
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
+  };
+
+  const onErrorClick = () => {
+    setSearch("Ivano-Frankivsk");
   };
 
   useEffect(() => {
@@ -45,25 +49,22 @@ function App() {
     threeDaysAfterTomorrow: moment().add(4, "days"),
   };
 
-  // console.log(moment(dates.tomorrow).date());
+  const cityName =
+    search.split("")[0].toUpperCase() + search.split("").slice(1).join("");
 
   return (
     <div className="app">
-      {data.cod ? (
+      {data.cod === "200" ? (
         isLoading ? (
           <Loader />
         ) : (
           <div className="main">
             <div className="city-container">
               <span className="city-text">
-                Weather in <span className="city">{search}</span>
+                Weather in <span className="city">{cityName}</span>
               </span>
-              <form onSubmit={handleSearchChange} className="searchbox">
-                <input
-                  type="text"
-                  placeholder="Search city"
-                  ref={inputRef}
-                />
+              <form onSubmit={onSearchSubmit} className="searchbox">
+                <input type="text" placeholder="Search city" ref={inputRef} />
               </form>
             </div>
             <Header dates={dates} />
@@ -77,10 +78,7 @@ function App() {
                 path={`/${moment(dates.tomorrow).date()}`}
                 exact
                 render={() => (
-                  <Card
-                    weather={data} 
-                    currentDate={dates.tomorrow}
-                  />
+                  <Card weather={data} currentDate={dates.tomorrow} />
                 )}
               />
               <Route
@@ -116,6 +114,14 @@ function App() {
             </Switch>
           </div>
         )
+      ) : data.cod === "404" ? (
+        <div className="code-404">
+          There is no city called{" "}
+          <span className="code-404-city-name">{search}</span>
+          <button className="code-404-button" onClick={onErrorClick}>
+            Got it! Go back.
+          </button>
+        </div>
       ) : (
         <Loader />
       )}

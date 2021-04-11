@@ -2,7 +2,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: #21262d;
+  color: whtite;
+}
+
+.code-404{
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  font-size: 4rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.code-404-button {
+  margin: 50px;
+  border: none;
+  outline: none;
+  font-size: 2rem;
+  padding: 1rem;
+  color: orangered;
+  background-color: #0d1117;
+}
+.code-404-city-name{
+  color: red;
 }
 
 .card-container {
@@ -51,7 +76,7 @@
 .city {
   width: 50%;
   margin-left: 10px;
-  color: #ec6e4c;
+  color: orangered;
 }
 
 .searchbox {
